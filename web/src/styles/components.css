@@ -474,3 +474,217 @@
   border: 1px solid var(--border);
   background: transparent;
 }
+
+.runner-collapse {
+  margin-top: var(--space-lg);
+}
+
+.runner-collapse summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: var(--space-sm) 0;
+}
+
+.lab-panel {
+  margin-top: var(--space-xl);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface-muted) 0%, var(--surface) 100%);
+}
+
+.lab-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin: 0 0 var(--space-xs);
+}
+
+.lab-mission {
+  color: var(--accent-hover);
+  font-size: 0.9375rem;
+  margin: 0 0 var(--space-md);
+}
+
+.lab-security-banner {
+  font-size: 0.8125rem;
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+  border-left: 3px solid var(--warning);
+  background: rgba(184, 154, 74, 0.12);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.lab-offline-banner pre {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: var(--space-sm);
+}
+
+.lab-presets {
+  margin-bottom: var(--space-md);
+}
+
+.lab-presets-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.lab-preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.lab-preset[data-default="1"] {
+  border-color: var(--accent);
+}
+
+.lab-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.lab-field span {
+  display: block;
+  font-size: 0.8125rem;
+  margin-bottom: var(--space-xs);
+  color: var(--text-muted);
+}
+
+.lab-field input,
+.lab-field select,
+.lab-field textarea {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: var(--space-sm);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.lab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.lab-result {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.lab-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.lab-status-passed {
+  color: var(--success);
+  border: 1px solid rgba(107, 155, 110, 0.35);
+}
+
+.lab-status-failed {
+  color: var(--danger);
+  border: 1px solid rgba(196, 92, 92, 0.35);
+}
+
+.lab-status-running {
+  color: var(--accent-hover);
+}
+
+.lab-visual-wrap {
+  margin: var(--space-md) 0;
+}
+
+.lab-visual-diff {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.diff-chunk {
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
+.diff-keep {
+  color: var(--text-muted);
+}
+
+.diff-insert {
+  background: rgba(107, 155, 110, 0.25);
+  color: var(--success);
+}
+
+.diff-delete {
+  background: rgba(196, 92, 92, 0.2);
+  color: var(--danger);
+  text-decoration: line-through;
+}
+
+.lab-visual-grid {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+
+.cell-alive {
+  color: var(--accent-hover);
+}
+
+.cell-dead {
+  color: var(--border);
+}
+
+.lab-explanation h4 {
+  font-size: 0.875rem;
+  margin: 0 0 var(--space-xs);
+}
+
+.lab-explanation ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.lab-guided-cards {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.lab-card {
+  padding: var(--space-md);
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.lab-card h4 {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.9375rem;
+}
+
+.lab-json,
+.lab-bits {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: var(--space-sm);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  max-height: 240px;
+}

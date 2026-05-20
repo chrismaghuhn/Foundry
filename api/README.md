@@ -37,6 +37,18 @@ Optional: `FOUNDRY_ROOT` env var overrides auto-detected repo root.
 2. Add a matching `ModuleRunnerSpec` in `runner/module_registry.py`.
 3. Run `python -m pytest` in `api/` — registry must match `modules.json` ids exactly.
 
+## Interactive Labs
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/labs` | List all labs |
+| GET | `/api/labs/{id}` | Lab definition (inputs, presets, mission) |
+| POST | `/api/labs/{id}/run` | Run lab with `{ "presetId", "input" }` |
+
+Labs run **in-process** via whitelisted adapters under `labs/adapters/`. Limits: 5s timeout, 5k text / 10k JSON, no subprocess/eval/shell.
+
+To add a lab: register in `labs/lab_registry.py` and implement `get_definition()` + `run_lab()` in a new adapter module.
+
 ## Tests
 
 ```powershell

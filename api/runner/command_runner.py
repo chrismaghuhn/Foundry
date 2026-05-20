@@ -23,6 +23,15 @@ def timeout_for_action(action: RunActionType) -> int:
     return EXAMPLE_TIMEOUT_S
 
 
+def _runner_env() -> dict[str, str]:
+    return {
+        **os.environ,
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+    }
+
+
 def _truncate(text: str) -> tuple[str, bool]:
     if len(text) <= MAX_OUTPUT_CHARS:
         return text, False
@@ -64,7 +73,9 @@ def run_command(
             text=True,
             timeout=timeout_s,
             shell=False,
-            env={**os.environ, "PYTHONUNBUFFERED": "1"},
+            env=_runner_env(),
+            encoding="utf-8",
+            errors="replace",
         )
         duration_ms = int((time.perf_counter() - start) * 1000)
         stdout, trunc_out = _truncate(completed.stdout or "")
