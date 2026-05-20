@@ -372,3 +372,105 @@
 .not-found h1 {
   font-family: var(--font-serif);
 }
+
+.runner-section {
+  margin-top: var(--space-xl);
+}
+
+.runner-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin: 0 0 var(--space-sm);
+}
+
+.runner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: var(--space-md) 0;
+}
+
+.runner-offline-banner pre {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: var(--space-sm);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: var(--space-sm) 0 0;
+}
+
+.runner-panel {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+}
+
+.runner-output-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.runner-cmd,
+.runner-stream {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.runner-stream-err {
+  color: #d4a5a5;
+}
+
+.runner-hint {
+  margin-top: 0;
+}
+
+.runner-status-idle {
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.runner-status-running {
+  color: var(--accent-hover);
+  border: 1px solid rgba(193, 127, 58, 0.4);
+  background: var(--accent-soft);
+}
+
+.runner-status-passed {
+  color: var(--success);
+  border: 1px solid rgba(107, 155, 110, 0.35);
+  background: rgba(107, 155, 110, 0.1);
+}
+
+.runner-status-failed {
+  color: var(--danger);
+  border: 1px solid rgba(196, 92, 92, 0.35);
+  background: rgba(196, 92, 92, 0.1);
+}
+
+.runner-status-timeout {
+  color: var(--warning);
+  border: 1px solid rgba(184, 154, 74, 0.35);
+  background: rgba(184, 154, 74, 0.1);
+}
+
+.runner-status-unavailable {
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  background: transparent;
+}
