@@ -1,4 +1,10 @@
 import catalog from "./data/modules.json";
+import {
+  createRunnerState,
+  loadRunnerContext,
+  renderModuleDetail,
+  setupModuleDetail,
+} from "./ui/moduleDetail.js";
 
 const CLUSTER_LABELS = Object.fromEntries(
   catalog.clusters.map((c) => [c.id, c.label])
@@ -10,6 +16,7 @@ const state = {
   filterCluster: "all",
   search: "",
   route: parseRoute(),
+  runnerState: createRunnerState(),
 };
 
 function parseRoute() {
@@ -21,12 +28,9 @@ function parseRoute() {
   return { view: "catalog" };
 }
 
-function navigate(path) {
-  window.location.hash = path;
-}
-
 function onRouteChange() {
   state.route = parseRoute();
+  state.runnerState = createRunnerState();
   render();
 }
 
@@ -103,7 +107,7 @@ function renderHeader() {
 
 function renderFooter() {
   return `
-    <p>Foundry developer lab — Python packages on disk, console in the browser. No code execution here.</p>
+    <p>Foundry developer lab — catalog in the browser; tests and examples run via localhost API only.</p>
   `;
 }
 
@@ -188,62 +192,6 @@ function renderPlayground(mod) {
   return "";
 }
 
-function renderDetail(mod) {
-  const cluster = state.clusters.find((c) => c.id === mod.cluster);
-  const examples = mod.examples?.length
-    ? mod.examples.map((f) => `<li>${escapeHtml(f)}</li>`).join("")
-    : "<li>No examples.py in package</li>";
-  const tests = mod.tests?.length
-    ? mod.tests.map((f) => `<li>${escapeHtml(f)}</li>`).join("")
-    : "<li>No test suite in package</li>";
-
-  return `
-    <article class="detail-layout">
-      <div class="detail-main">
-        <header class="detail-header">
-          <h1>${escapeHtml(mod.name)}</h1>
-          <div class="detail-badges">
-            ${clusterBadge(mod.cluster)}
-            ${statusBadge(mod.status)}
-          </div>
-        </header>
-        <div class="prose">
-          <p>${escapeHtml(mod.summary)}</p>
-          <h2>Purpose</h2>
-          <p>${escapeHtml(mod.purpose)}</p>
-          ${
-            mod.productionNote
-              ? `<h2>Deployment note</h2><p>${escapeHtml(mod.productionNote)}</p>`
-              : ""
-          }
-          ${renderPlayground(mod)}
-        </div>
-      </div>
-      <aside class="detail-aside">
-        <div class="panel">
-          <h3>Run locally</h3>
-          <p class="prose" style="margin:0 0 var(--space-md)">
-            <code>${escapeHtml(mod.runHint || `cd ${mod.id}`)}</code>
-          </p>
-          ${
-            cluster
-              ? `<p class="stats-line">${escapeHtml(cluster.description)}</p>`
-              : ""
-          }
-        </div>
-        <div class="panel" style="margin-top: var(--space-md)">
-          <h3>Example files</h3>
-          <ul class="file-list">${examples}</ul>
-        </div>
-        <div class="panel" style="margin-top: var(--space-md)">
-          <h3>Tests</h3>
-          <ul class="file-list">${tests}</ul>
-        </div>
-      </aside>
-    </article>
-  `;
-}
-
 function renderCatalog() {
   const modules = filteredModules();
   const clusterDesc =
@@ -282,6 +230,39 @@ function renderNotFound() {
   `;
 }
 
+const detailHelpers = {
+  escapeHtml,
+  clusterBadge,
+  statusBadge,
+  renderPlayground,
+  CLUSTER_LABELS,
+};
+
+async function renderDetailView(main, mod) {
+  const ctx = await loadRunnerContext();
+  state.runnerState.apiOnline = ctx.apiOnline;
+  state.runnerState.modulesById = ctx.modulesById || {};
+
+  const cluster = state.clusters.find((c) => c.id === mod.cluster);
+  main.innerHTML = renderModuleDetail(
+    mod,
+    cluster,
+    detailHelpers,
+    state.runnerState
+  );
+  setupModuleDetail(mod, state.runnerState, () => {
+    const m = state.modules.find((x) => x.id === mod.id);
+    if (!m) return;
+    main.innerHTML = renderModuleDetail(
+      m,
+      cluster,
+      detailHelpers,
+      state.runnerState
+    );
+    setupModuleDetail(m, state.runnerState, () => renderDetailView(main, m));
+  });
+}
+
 function render() {
   document.getElementById("site-header").innerHTML = renderHeader();
   document.getElementById("site-footer").innerHTML = renderFooter();
@@ -289,7 +270,13 @@ function render() {
   const main = document.getElementById("site-main");
   if (state.route.view === "detail") {
     const mod = state.modules.find((m) => m.id === state.route.id);
-    main.innerHTML = mod ? renderDetail(mod) : renderNotFound();
+    if (!mod) {
+      main.innerHTML = renderNotFound();
+      bindEvents();
+      return;
+    }
+    main.innerHTML = `<p class="stats-line">Loading runner…</p>`;
+    renderDetailView(main, mod);
   } else {
     main.innerHTML = renderCatalog();
   }
