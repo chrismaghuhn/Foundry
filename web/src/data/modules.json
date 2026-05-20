@@ -1,0 +1,433 @@
+{
+  "clusters": [
+    {
+      "id": "algorithms",
+      "label": "Algorithms",
+      "description": "Classic CS building blocks, parsers, and numerical structures."
+    },
+    {
+      "id": "dsl",
+      "label": "DSL / Compiler / Data",
+      "description": "Languages, state machines, query engines, and tamper-evident logs."
+    },
+    {
+      "id": "async",
+      "label": "Async Infrastructure",
+      "description": "Caches, rate limits, reactive graphs, and distributed coordination."
+    },
+    {
+      "id": "protocol",
+      "label": "Protocol / Integration",
+      "description": "Reference protocols and integration sketches — learning material, not production crypto."
+    }
+  ],
+  "modules": [
+    {
+      "id": "graph",
+      "name": "graph",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Graph algorithms with step-by-step exploration: BFS, DFS, Dijkstra, MST, topological sort.",
+      "purpose": "Teaching and tooling around directed and undirected graphs. Use when you need pathfinding or ordering without pulling in a heavy graph library.",
+      "examples": ["examples.py"],
+      "tests": ["test_graph.py"],
+      "runHint": "cd graph && python -m pytest -q",
+      "productionNote": "Library module with tests. Suitable as a dependency for internal tools."
+    },
+    {
+      "id": "shamir",
+      "name": "shamir",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Shamir secret sharing over a prime field — split, combine, and visualize threshold recovery.",
+      "purpose": "Demonstrates information-theoretic threshold schemes in pure Python for education and prototyping.",
+      "examples": ["examples.py"],
+      "tests": ["test_shamir.py"],
+      "runHint": "cd shamir && python examples.py",
+      "productionNote": "Educational crypto — not audited for production key management."
+    },
+    {
+      "id": "diff",
+      "name": "diff",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Myers diff and edit scripts — minimal edits between sequences, unified diff output.",
+      "purpose": "Compare lists or text lines and produce human-readable patches. Handy for teaching diff algorithms.",
+      "examples": ["examples.py"],
+      "tests": ["test_diff.py"],
+      "runHint": "cd diff && python -m pytest -q",
+      "productionNote": "Stable tested module.",
+      "playground": {
+        "type": "static",
+        "title": "Line diff (illustration)",
+        "before": "alpha\nbeta\ngamma",
+        "after": "alpha\nbeta line\ndelta\ngamma",
+        "note": "Run examples.py locally for real Myers output. This panel is a static preview only."
+      }
+    },
+    {
+      "id": "automata",
+      "name": "automata",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Cellular automata: Game of Life, elementary rules, Langton's Ant.",
+      "purpose": "Explore emergent behavior from simple local rules with visual step-through.",
+      "examples": ["examples.py"],
+      "tests": ["test_automata.py"],
+      "runHint": "cd automata && python examples.py"
+    },
+    {
+      "id": "lisp",
+      "name": "lisp",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Lisp interpreter with REPL, macros, and tail-call optimization.",
+      "purpose": "A from-scratch language runtime for studying evaluation, environments, and macros.",
+      "examples": ["examples.py"],
+      "tests": ["test_lisp.py"],
+      "runHint": "cd lisp && python examples.py"
+    },
+    {
+      "id": "parsec",
+      "name": "parsec",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Parser combinator toolkit — compose small parsers into full grammars.",
+      "purpose": "Build recursive-descent-style parsers without code generation. Good for custom mini-languages.",
+      "examples": ["examples.py"],
+      "tests": ["test_parsec.py"],
+      "runHint": "cd parsec && python -m pytest -q"
+    },
+    {
+      "id": "turing",
+      "name": "turing",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Turing machine simulator with built-in machines and step traces.",
+      "purpose": "Make computability concrete — run machines, inspect tapes, and customize transition tables.",
+      "examples": ["examples.py"],
+      "tests": ["test_turing.py"],
+      "runHint": "cd turing && python examples.py"
+    },
+    {
+      "id": "lambda",
+      "name": "lambda",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Untyped lambda calculus interpreter with Church numerals and reduction steps.",
+      "purpose": "Study functional foundations: substitution, reduction strategies, and encodings.",
+      "examples": ["examples.py"],
+      "tests": ["test_lambda.py"],
+      "runHint": "cd lambda && python examples.py",
+      "productionNote": "Implementation lives in lambda_calc.py inside the lambda package directory."
+    },
+    {
+      "id": "enigma",
+      "name": "enigma",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Historically grounded Enigma machine simulation — encrypt, decrypt, rotor stepping.",
+      "purpose": "Cryptography history lab. Shows how rotor machines permute characters over time.",
+      "examples": ["examples.py"],
+      "tests": ["test_enigma.py"],
+      "runHint": "cd enigma && python examples.py"
+    },
+    {
+      "id": "morse",
+      "name": "morse",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Huffman coding — build trees, encode and decode with compression stats.",
+      "purpose": "Entropy and prefix codes in one module. Often taught alongside information theory.",
+      "examples": ["examples.py"],
+      "tests": ["test_morse.py"],
+      "runHint": "cd morse && python examples.py",
+      "playground": {
+        "type": "static",
+        "title": "Huffman intuition",
+        "sample": "Symbol frequencies drive code length. Rare symbols get longer bit strings.",
+        "note": "Static illustration. Use morse/examples.py for real encode/decode."
+      }
+    },
+    {
+      "id": "phantom",
+      "name": "phantom",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Regex engine with NFA construction, visualization, and match tracing.",
+      "purpose": "See Thompson NFA building and simulation. Debug why a pattern matches or fails.",
+      "examples": ["examples.py"],
+      "tests": ["test_phantom.py"],
+      "runHint": "cd phantom && python -c \"from phantom import visualize; print(visualize('a+b*'))\""
+    },
+    {
+      "id": "lattice",
+      "name": "lattice",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "CRDTs — counters, sets, and registers that merge without coordination.",
+      "purpose": "Eventually consistent replicated data structures for distributed system study.",
+      "examples": ["examples.py"],
+      "tests": ["test_lattice.py"],
+      "runHint": "cd lattice && python -m pytest -q"
+    },
+    {
+      "id": "sketch",
+      "name": "sketch",
+      "cluster": "algorithms",
+      "status": "stable",
+      "summary": "Probabilistic sketches: Bloom filter, HyperLogLog, Count-Min Sketch.",
+      "purpose": "Approximate aggregates with bounded memory — streaming and big-data fundamentals.",
+      "examples": ["examples.py"],
+      "tests": ["test_sketch.py"],
+      "runHint": "cd sketch && python examples.py"
+    },
+    {
+      "id": "glyph",
+      "name": "glyph",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "ASCII art dataflow — box diagrams compile to executable pipelines.",
+      "purpose": "The diagram is the program. Input flows through named nodes drawn as boxes.",
+      "examples": ["examples.py"],
+      "tests": ["test_glyph.py", "glyph_test.py", "test_dokument.py"],
+      "runHint": "cd glyph && python examples.py"
+    },
+    {
+      "id": "forge",
+      "name": "forge",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "Validated finite state machines — catch unreachable states before runtime.",
+      "purpose": "Define states, events, guards, and actions with build-time validation. Distinct from forge_vm.",
+      "examples": ["examples.py"],
+      "tests": ["test_forge.py"],
+      "runHint": "cd forge && python -m pytest -q",
+      "productionNote": "Guards that raise exceptions are treated as failed guards (documented in tests)."
+    },
+    {
+      "id": "rune",
+      "name": "rune",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "Sandboxed expression evaluator with fuel limits and typed builtins.",
+      "purpose": "Evaluate user formulas safely — no I/O, bounded depth and operation count.",
+      "examples": ["examples.py"],
+      "tests": ["test_rune.py"],
+      "runHint": "cd rune && python examples.py"
+    },
+    {
+      "id": "prism",
+      "name": "prism",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "jq-style query language for JSON-like data — pipes, filters, and builtins.",
+      "purpose": "Query dicts and lists with a small expression language. Compile once, run many times.",
+      "examples": ["examples.py"],
+      "tests": ["test_prism.py"],
+      "runHint": "cd prism && python examples.py",
+      "playground": {
+        "type": "static",
+        "title": "Query shape",
+        "query": ".users | filter(.age >= 18) | map(.name)",
+        "data": "{ \"users\": [{\"name\": \"Ada\", \"age\": 30}, {\"name\": \"Lin\", \"age\": 16}] }",
+        "result": "[\"Ada\"]",
+        "note": "Illustrative result. Execute queries via Python: from prism import query"
+      }
+    },
+    {
+      "id": "malo",
+      "name": "malo",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "Merkle append-only log with inclusion and consistency proofs.",
+      "purpose": "Tamper-evident audit trails in memory — study how hash chains prove history.",
+      "examples": ["examples.py"],
+      "tests": ["test_malo.py"],
+      "runHint": "cd malo && python examples.py"
+    },
+    {
+      "id": "chrono",
+      "name": "chrono",
+      "cluster": "dsl",
+      "status": "stable",
+      "summary": "Logical clocks — Lamport, vector, and hybrid timestamps for ordering events.",
+      "purpose": "Reason about causality in async and distributed systems without wall-clock trust.",
+      "examples": ["examples.py"],
+      "tests": ["test_chrono.py"],
+      "runHint": "cd chrono && python -m pytest -q"
+    },
+    {
+      "id": "arc",
+      "name": "arc",
+      "cluster": "async",
+      "status": "stable",
+      "summary": "Async ARC cache — recency and frequency aware eviction for asyncio workloads.",
+      "purpose": "Drop-in cache with better hit rates than pure LRU for mixed access patterns.",
+      "examples": ["examples.py"],
+      "tests": ["test_arc.py"],
+      "runHint": "cd arc && python -m pytest -q"
+    },
+    {
+      "id": "sentinel",
+      "name": "sentinel",
+      "cluster": "async",
+      "status": "stable",
+      "summary": "Async rate limiting — token bucket, sliding window, decorators.",
+      "purpose": "Protect asyncio services from overload with pluggable limiter backends.",
+      "examples": ["examples.py"],
+      "tests": ["test_sentinel.py"],
+      "runHint": "cd sentinel && python examples.py"
+    },
+    {
+      "id": "flux",
+      "name": "flux",
+      "cluster": "async",
+      "status": "stable",
+      "summary": "Reactive dataflow DAG — parallel node execution with caching.",
+      "purpose": "Describe computation as a graph; Flux schedules and memoizes node runs.",
+      "examples": ["examples.py"],
+      "tests": ["test_flux.py"],
+      "runHint": "cd flux && python -m pytest -q"
+    },
+    {
+      "id": "styx",
+      "name": "styx",
+      "cluster": "async",
+      "status": "stable",
+      "summary": "Async Shamir sharing — distribute and collect secrets across parties.",
+      "purpose": "Multi-party secret handling on top of asyncio. Pairs with shamir for sync math.",
+      "examples": ["examples.py"],
+      "tests": ["test_styx.py"],
+      "runHint": "cd styx && python -m pytest -q"
+    },
+    {
+      "id": "nexus",
+      "name": "nexus",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Verifiable ETL sketch — pipelines, audit log hooks, locks, metrics.",
+      "purpose": "Shows how ingestion, transformation, and audit might wire together. Reference only.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd nexus && python nexus_integration.py",
+      "productionNote": "Demonstration / reference implementation — not for production deployment. Configures logging on import."
+    },
+    {
+      "id": "reactor",
+      "name": "reactor",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Event sourcing with snapshots, time travel, and what-if timelines.",
+      "purpose": "Explore immutable event logs and reconstructed state at any sequence number.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd reactor && python reactor.py",
+      "productionNote": "Demo-grade event store — not a production persistence layer."
+    },
+    {
+      "id": "forge_vm",
+      "name": "forge_vm",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Fuel-bounded VM with receipts attesting to computation and output.",
+      "purpose": "Study verifiable computation boundaries. Name collides with forge (FSM) — different package.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd forge_vm && python forge.py",
+      "productionNote": "Demonstration VM — not a secure execution environment."
+    },
+    {
+      "id": "bastion",
+      "name": "bastion",
+      "cluster": "protocol",
+      "status": "experimental",
+      "summary": "Stdlib-only async resilience: circuit breaker, retry, bulkhead, rate limit.",
+      "purpose": "Copy-friendly decorators without framework weight. See BASTION.md for usage patterns.",
+      "examples": [],
+      "tests": [],
+      "runHint": "See bastion/BASTION.md — import from bastion package",
+      "productionNote": "Experimental utility — validate behavior before production adoption."
+    },
+    {
+      "id": "audit",
+      "name": "audit",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Game of scarce audit tokens — unverified claims can succeed.",
+      "purpose": "Mechanics for teaching incentive misalignment in verification systems.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd audit && python audit.py",
+      "productionNote": "Game simulation — not a compliance product."
+    },
+    {
+      "id": "tribunal",
+      "name": "tribunal",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Performance-review game with opaque manager behavior.",
+      "purpose": "Interactive critique of unverifiable judgment rules in workplaces.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd tribunal && python tribunal.py"
+    },
+    {
+      "id": "signal",
+      "name": "signal",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Anonymous salary-sharing with employer attestations (protocol sketch).",
+      "purpose": "Explore zero-knowledge style narratives around aggregate salary data.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd signal && python signal.py",
+      "productionNote": "Not audited cryptography. Do not use for real compensation data."
+    },
+    {
+      "id": "ledger",
+      "name": "ledger",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Mutual reputation — reviews unlock only after both parties commit.",
+      "purpose": "Study simultaneous revelation and bilateral accountability in rating systems.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd ledger && python ledger.py"
+    },
+    {
+      "id": "pact",
+      "name": "pact",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Multi-party agreements requiring all signatures; amendments need re-signing.",
+      "purpose": "Immutable agreement lifecycle for teaching consent and amendment rules.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd pact && python pact.py"
+    },
+    {
+      "id": "witness",
+      "name": "witness",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Commit to decision logic and prove an outcome matched that logic.",
+      "purpose": "Algorithmic accountability thought experiment — verifiable decision trails.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd witness && python witness.py"
+    },
+    {
+      "id": "specter",
+      "name": "specter",
+      "cluster": "protocol",
+      "status": "demo",
+      "summary": "Phantom-type state machine — invalid transitions fail at type-check time.",
+      "purpose": "Encode state charts in types; generate code for valid transition graphs.",
+      "examples": [],
+      "tests": [],
+      "runHint": "cd specter && python specter.py",
+      "productionNote": "Requires mypy/pyright discipline — runtime is just types and codegen."
+    }
+  ]
+}
