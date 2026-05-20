@@ -40,6 +40,18 @@ Get-ChildItem -Directory | ForEach-Object {
 
 Protocol and crypto-related modules are **reference implementations for learning**, not audited for production.
 
+## Web console
+
+Interactive catalog of all Foundry packages (read-only, no Python execution in the browser):
+
+```powershell
+cd web
+npm install
+npm run dev
+```
+
+Open the URL Vite prints (default `http://localhost:5173`). Production build: `npm run build`.
+
 ## Author
 
 chrismaghuhn
