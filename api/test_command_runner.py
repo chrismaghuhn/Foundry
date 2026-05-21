@@ -49,6 +49,8 @@ def test_passed_on_exit_zero(mock_run: MagicMock):
     call_kw = mock_run.call_args.kwargs
     assert call_kw["shell"] is False
     assert call_kw["timeout"] == TEST_TIMEOUT_S
+    assert call_kw["env"]["PYTHONUTF8"] == "1"
+    assert call_kw["encoding"] == "utf-8"
 
 
 @patch("runner.command_runner.subprocess.run")

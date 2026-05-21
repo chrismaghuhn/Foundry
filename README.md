@@ -71,6 +71,18 @@ Open [http://localhost:5173](http://localhost:5173). Use **Run tests** / **Run e
 
 Production build: `cd web && npm run build`.
 
+## Interactive Labs
+
+**Labs** let you play with each module in the browser (pathfinding, diffs, JSON queries, secret sharing, Game of Life, and more). The **Technical runner** section on each detail page still runs whitelisted `pytest` / `examples.py` when you need raw stdout.
+
+Use the same two-terminal setup as above (API on port 8000, Vite on 5173). Open any module detail page — the **Interactive Lab** runs automatically with a default preset.
+
+- 12 Tier-1 labs: full interactive visuals (graph, diff, prism, shamir, automata, enigma, turing, lambda, phantom, sketch, forge, rune)
+- 11 Tier-2 labs: curated preset scenarios (lisp, parsec, morse/Huffman, lattice, glyph, chrono, malo, arc, sentinel, flux, styx)
+- 11 Tier-3 labs: guided protocol/security explainers (integration modules + bastion read-only)
+
+Protocol and crypto modules are **learning demos**, not audited for production.
+
 ## Author
 
 chrismaghuhn

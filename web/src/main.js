@@ -1,6 +1,8 @@
 import catalog from "./data/modules.json";
 import {
+  createLabState,
   createRunnerState,
+  initLabPanel,
   loadRunnerContext,
   renderModuleDetail,
   setupModuleDetail,
@@ -17,6 +19,7 @@ const state = {
   search: "",
   route: parseRoute(),
   runnerState: createRunnerState(),
+  labState: createLabState(),
 };
 
 function parseRoute() {
@@ -244,23 +247,30 @@ async function renderDetailView(main, mod) {
   state.runnerState.modulesById = ctx.modulesById || {};
 
   const cluster = state.clusters.find((c) => c.id === mod.cluster);
-  main.innerHTML = renderModuleDetail(
-    mod,
-    cluster,
-    detailHelpers,
-    state.runnerState
-  );
-  setupModuleDetail(mod, state.runnerState, () => {
+
+  const rerender = () => {
     const m = state.modules.find((x) => x.id === mod.id);
     if (!m) return;
     main.innerHTML = renderModuleDetail(
       m,
       cluster,
       detailHelpers,
-      state.runnerState
+      state.runnerState,
+      state.labState
     );
-    setupModuleDetail(m, state.runnerState, () => renderDetailView(main, m));
-  });
+    setupModuleDetail(m, state.runnerState, state.labState, rerender);
+  };
+
+  state.labState = createLabState();
+  main.innerHTML = renderModuleDetail(
+    mod,
+    cluster,
+    detailHelpers,
+    state.runnerState,
+    state.labState
+  );
+  setupModuleDetail(mod, state.runnerState, state.labState, rerender);
+  await initLabPanel(mod, state.labState, rerender);
 }
 
 function render() {
@@ -275,7 +285,7 @@ function render() {
       bindEvents();
       return;
     }
-    main.innerHTML = `<p class="stats-line">Loading runner…</p>`;
+    main.innerHTML = `<p class="stats-line">Loading module…</p>`;
     renderDetailView(main, mod);
   } else {
     main.innerHTML = renderCatalog();

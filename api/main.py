@@ -7,6 +7,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
+from labs.lab_router import router as labs_router
+from labs.lab_router import validate_on_startup as validate_labs
 from runner import (
     get_spec,
     resolve_foundry_root,
@@ -24,10 +26,12 @@ ALLOWED_ORIGINS = [
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     validate_registry()
+    validate_labs()
     yield
 
 
-app = FastAPI(title="Foundry Runner API", lifespan=lifespan)
+app = FastAPI(title="Foundry API", lifespan=lifespan)
+app.include_router(labs_router, prefix="/api/labs")
 
 app.add_middleware(
     CORSMiddleware,
